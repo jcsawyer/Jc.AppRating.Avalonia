@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jc.AppRating.Avalonia", "src\Jc.AppRating.Avalonia\Jc.AppRating.Avalonia.csproj", "{F63B6483-4329-4746-82F0-1B0E20679583}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jc.AppRating.Avalonia.iOS", "src\Jc.AppRating.Avalonia.iOS\Jc.AppRating.Avalonia.iOS.csproj", "{8A4A8878-F9F4-466C-87D8-F90EA3A21218}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jc.AppRating.Avalonia.Android", "src\Jc.AppRating.Avalonia.Android\Jc.AppRating.Avalonia.Android.csproj", "{4A520B96-47AA-45B6-B226-CBE51B68040A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F63B6483-4329-4746-82F0-1B0E20679583}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F63B6483-4329-4746-82F0-1B0E20679583}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F63B6483-4329-4746-82F0-1B0E20679583}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F63B6483-4329-4746-82F0-1B0E20679583}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A4A8878-F9F4-466C-87D8-F90EA3A21218}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A4A8878-F9F4-466C-87D8-F90EA3A21218}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A4A8878-F9F4-466C-87D8-F90EA3A21218}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A4A8878-F9F4-466C-87D8-F90EA3A21218}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A520B96-47AA-45B6-B226-CBE51B68040A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A520B96-47AA-45B6-B226-CBE51B68040A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A520B96-47AA-45B6-B226-CBE51B68040A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A520B96-47AA-45B6-B226-CBE51B68040A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
