@@ -4,6 +4,7 @@ using Android.OS;
 using Java.Lang;
 using Microsoft.Maui.ApplicationModel;
 using Xamarin.Google.Android.Play.Core.Review;
+using Xamarin.Google.Android.Play.Core.Review.Testing;
 using Exception = System.Exception;
 using Task = Android.Gms.Tasks.Task;
 
@@ -48,7 +49,7 @@ public class AppRatingAndroid : Java.Lang.Object, IAppRating, global::Android.Gm
     {
         _tcs?.TrySetCanceled();
         _tcs = new TaskCompletionSource<bool>();
-        
+
         if (string.IsNullOrWhiteSpace(appId))
         {
             OnError?.Invoke(this, new AppRatingError("Play Store appId cannot be null or empty."));
@@ -84,7 +85,7 @@ public class AppRatingAndroid : Java.Lang.Object, IAppRating, global::Android.Gm
             var intent = new Intent(Intent.ActionView, global::Android.Net.Uri.Parse(playStoreUrl));
             intent.AddFlags(ActivityFlags.NewTask);
             Platform.AppContext.StartActivity(intent);
-            
+
             _tcs.SetResult(true);
         }
 

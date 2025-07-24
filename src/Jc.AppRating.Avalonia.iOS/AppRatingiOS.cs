@@ -8,30 +8,32 @@ internal sealed class AppRatingiOS : IAppRating
 
     public Task<bool> RequestInAppRatingAsync()
     {
-        var tcs = new TaskCompletionSource<bool>();
         if (!UIDevice.CurrentDevice.CheckSystemVersion(10, 3))
         {
             OnError?.Invoke(this, new AppRatingError("In-App Rating is not supported on this iOS version."));
-            tcs.SetResult(false);
-            return tcs.Task;
+            return Task.FromResult(false);
         }
 
         if (!UIDevice.CurrentDevice.CheckSystemVersion(14, 0))
         {
             SKStoreReviewController.RequestReview();
-            tcs.SetResult(true);
+            return Task.FromResult(true);
         }
-        else
+        
+        if (UIApplication.SharedApplication?.ConnectedScenes?.ToArray().FirstOrDefault(scene =>
+                scene.ActivationState == UISceneActivationState.ForegroundActive) is UIWindowScene windowScene)
         {
-            if (UIApplication.SharedApplication?.ConnectedScenes?.ToArray().FirstOrDefault(scene =>
-                    scene.ActivationState == UISceneActivationState.ForegroundActive) is UIWindowScene windowScene)
-            {
-                SKStoreReviewController.RequestReview(windowScene);
-                tcs.SetResult(true);
-            }
+            // TODO - Uncomment when iOS 18 API is stable
+            // if (UIDevice.CurrentDevice.CheckSystemVersion(18, 0))
+            // {
+            //     AppStore.RequestReview(windowScene);
+            // }
+            
+            SKStoreReviewController.RequestReview(windowScene);
+            return Task.FromResult(true);
         }
-
-        return tcs.Task;
+        
+        return Task.FromResult(false);
     }
 
     public Task<bool> RequestInStoreRatingAsync(string appId)
@@ -49,16 +51,10 @@ internal sealed class AppRatingiOS : IAppRating
 
         try
         {
-            if (UIDevice.CurrentDevice.CheckSystemVersion(10, 0))
+            UIApplication.SharedApplication.OpenUrl(url, new UIApplicationOpenUrlOptions(), success =>
             {
-                UIApplication.SharedApplication.OpenUrlAsync(url, new UIApplicationOpenUrlOptions());
-            }
-            else
-            {
-                UIApplication.SharedApplication.OpenUrl(url);
-            }
-
-            tcs.SetResult(true);
+                tcs.SetResult(success);
+            });
         }
         catch (Exception)
         {
