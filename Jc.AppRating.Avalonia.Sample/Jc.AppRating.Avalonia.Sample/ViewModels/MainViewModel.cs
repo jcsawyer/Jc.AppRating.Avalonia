@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ReactiveUI;
@@ -12,8 +13,19 @@ public class MainViewModel : ViewModelBase
 
     public MainViewModel()
     {
+        AppRating.Current.OnError += AppRatingError; 
         InAppRatingCommand = ReactiveCommand.CreateFromTask(InAppRating);
         InStoreRatingCommand = ReactiveCommand.CreateFromTask(InStoreRating);
+    }
+
+    ~MainViewModel()
+    {
+        AppRating.Current.OnError -= AppRatingError;
+    }
+
+    private void AppRatingError(object? sender, AppRatingError e)
+    {
+        Debug.WriteLine($"AppRating encountered an error: {e.Message}");
     }
 
     private async Task InAppRating()
