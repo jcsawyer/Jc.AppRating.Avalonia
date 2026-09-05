@@ -19,7 +19,7 @@
         <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
         <PackageReference Include="Avalonia.Android" Version="$(AvaloniaVersion)" />
         <PackageReference Include="Microsoft.Maui.Essentials" Version="9.0.120" />
-        <PackageReference Include="Xamarin.Google.Android.Play.Review.Ktx" Version="2.0.2.7" />
+        <PackageReference Include="Xamarin.Google.Android.Play.Review.Ktx" Version="2.0.2.10" />
     </ItemGroup>
 
     <ItemGroup>
