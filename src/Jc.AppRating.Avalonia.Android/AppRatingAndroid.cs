@@ -3,8 +3,7 @@ using Android.Content.PM;
 using Android.OS;
 using Java.Lang;
 using Microsoft.Maui.ApplicationModel;
-using Xamarin.Google.Android.Play.Core.Review;
-using Xamarin.Google.Android.Play.Core.Review.Testing;
+using Google.Android.Play.Core.Review;
 using Exception = System.Exception;
 using Task = Android.Gms.Tasks.Task;
 
