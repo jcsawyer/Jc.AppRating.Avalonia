@@ -4,7 +4,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.iOS;
 using Avalonia.Media;
-using Avalonia.ReactiveUI;
+using ReactiveUI.Avalonia;
 using Jc.AppRating.Avalonia.iOS;
 
 namespace Jc.AppRating.Avalonia.Sample.iOS;
@@ -22,6 +22,6 @@ public partial class AppDelegate : AvaloniaAppDelegate<App>
         return base.CustomizeAppBuilder(builder)
             .UseAppRating()
             .WithInterFont()
-            .UseReactiveUI();
+            .UseReactiveUI(_ => { });
     }
 }

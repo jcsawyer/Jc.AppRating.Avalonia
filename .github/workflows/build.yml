@@ -3,7 +3,10 @@ name: Build
 env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
   DOTNET_NOLOGO: true
-  DOTNET_VERSION: 9.0.x
+  DOTNET_VERSION: 10.0.x
+  # This workload set targets Xcode 26.6, available on the macOS 26 runners.
+  DOTNET_WORKLOAD_VERSION: 10.0.401
+  DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
 
 on:
   push:
@@ -13,7 +16,10 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: macos-26
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
 
     steps:
       - uses: actions/checkout@v7
@@ -21,9 +27,19 @@ jobs:
         uses: actions/setup-dotnet@v6
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
+      - name: Report toolchain versions
+        run: |
+          dotnet --info
+          xcodebuild -version
       - name: Restore workloads
-        run: dotnet workload restore
+        run: |
+          dotnet workload restore jc-apprating-avalonia-samples.sln --version ${{ env.DOTNET_WORKLOAD_VERSION }}
+          dotnet workload --info
       - name: Restore dependencies
         run: dotnet restore jc-apprating-avalonia.sln
-      - name: Build
-        run: dotnet build jc-apprating-avalonia.sln --no-restore
+      - name: Build libraries
+        run: dotnet build jc-apprating-avalonia.sln --configuration ${{ matrix.configuration }} --no-restore
+      - name: Build Android sample
+        run: dotnet build Jc.AppRating.Avalonia.Sample/Jc.AppRating.Avalonia.Sample.Android/Jc.AppRating.Avalonia.Sample.Android.csproj --configuration ${{ matrix.configuration }}
+      - name: Build unsigned iOS simulator sample
+        run: dotnet build Jc.AppRating.Avalonia.Sample/Jc.AppRating.Avalonia.Sample.iOS/Jc.AppRating.Avalonia.Sample.iOS.csproj --configuration ${{ matrix.configuration }} -p:RuntimeIdentifier=iossimulator-arm64 -p:EnableCodeSigning=false
