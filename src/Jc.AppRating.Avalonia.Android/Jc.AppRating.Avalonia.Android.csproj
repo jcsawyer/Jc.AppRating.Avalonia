@@ -19,7 +19,7 @@
     <ItemGroup>
         <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
         <PackageReference Include="Avalonia.Android" Version="$(AvaloniaVersion)" />
-        <PackageReference Include="Microsoft.Maui.Essentials" Version="10.0.110" />
+        <PackageReference Include="Microsoft.Maui.Essentials" Version="10.0.120" />
         <!-- Match the lifecycle runtime pulled in by Essentials. -->
         <PackageReference Include="Xamarin.AndroidX.Lifecycle.Process" Version="2.11.0.1" />
         <PackageReference Include="Xamarin.Google.Android.Play.Review.Ktx" Version="2.0.2.10" />
