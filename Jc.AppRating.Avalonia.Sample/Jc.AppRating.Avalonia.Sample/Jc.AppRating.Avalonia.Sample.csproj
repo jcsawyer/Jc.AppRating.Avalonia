@@ -14,7 +14,7 @@
         <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)"/>
         <PackageReference Include="Avalonia.Themes.Fluent" Version="$(AvaloniaVersion)"/>
         <PackageReference Include="Avalonia.Fonts.Inter" Version="$(AvaloniaVersion)"/>
-        <PackageReference Include="ReactiveUI.Avalonia" Version="12.1.6"/>
+        <PackageReference Include="ReactiveUI.Avalonia" Version="12.1.7"/>
     </ItemGroup>
 
     <ItemGroup>
